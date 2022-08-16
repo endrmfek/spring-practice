@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  
+}
+
+.main-header {
+  background: #fff;
+}
+
+.customerInquiry {
+	
+	background: url("..//img/hero/main.png") no-repeat center;
+  background-size: cover; 
+  position: relative;
+  width: 100%;
+  height:100%;
+  padding: 40px 100px;
+}
+
+.customerInquiry .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.customerInquiry .title h2 {
+  color: whitesmoke;
+  font-weight: 500;
+  font-family: "El Messiri", sans-serif;
+}
+
+.form {
+  grid-area: form;
+}
+
+.info {
+  grid-area: info;
+}
+
+.map {
+  grid-area: map;
+}
+
+.inquiry {
+  padding: 24px;
+  background: #fff;
+  box-shadow: 0 1px 5px gray;
+  background-color: rgba(22, 21, 21, 0.527);
+}
+
+.box {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 5fr 4fr;
+  grid-template-areas:
+    "form info"
+    "form map";
+  grid-gap: 20px;
+  margin-top: 20px;
+}
+
+.inquiry h3 {
+  color: goldenrod;
+  font-weight: 500;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  font-family: "El Messiri", sans-serif;
+}
+
+.inquiry form {
+  opacity: 0.7;
+}
+
+/* form */
+.formBox {
+  position: relative;
+  width: 100%;
+}
+
+.formBox .row50 {
+  display: flex;
+  gap: 20px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%;
+  
+}
+
+.inputBox input {
+  font-size: 4px;
+}
+
+.formBox .row50 .inputBox {
+  width: 100%;
+}
+
+.inputBox span {
+  color: goldenrod;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.inputBox span p {
+  color: whitesmoke;
+}
+
+.inputBox input {
+  padding: 10px;
+  font-size: 1.1em;
+  outline: none;
+  border: 1px solid #dca73a;
+  border-radius: 10px;
+  color:#dca73a;
+}
+
+.inputBox textarea {
+  padding: 10px;
+  font-size: 1.1em;
+  outline: none;
+  border: 1px solid #dca73a;
+  resize: none;
+  min-height: 220px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.inputBox input[type="submit"] {
+  background: goldenrod;
+  color: #fff;
+  border: none;
+  font-size: 1.1em;
+  max-width: 120px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 14px 15px;
+}
+
+.inputBox ::placeholder {
+  color: #999;
+}
+
+/* Info */
+.infoBox p {
+  color: #ccc;
+}
+
+.info .infoBox div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.info .infoBox div span {
+  min-width: 40px;
+  /* height: 40px; */
+  color: goldenrod;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.sns {
+  margin-top: 40px;
+  display: flex;
+}
+
+.sns li {
+  list-style: none;
+  margin-right: 15px;
+}
+
+.sns a {
+  color: #ccc;
+  font-size: 1.5em;
+}
+
+.sns li a:hover {
+  color: goldenrod;
+}
+
+.map {
+  padding: 0;
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  body {
+    height: 100vh;
+    width: 100%;
+    background: url("/assets/img/hero/main.png") no-repeat center;
+    background-size: cover;
+  }
+  .customerInquiry {
+    padding: 0px;
+  }
+  .box {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "form"
+      "info"
+      "map";
+  }
+  .map {
+    min-height: 300px;
+  }
+}
+

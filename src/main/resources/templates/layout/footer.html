@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <footer th:fragment="common_footer">
+        <!-- Footer Start-->
+        <div class="footer-area black-bg footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-30">
+                            <!-- logo -->
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="assets/img/logo/logo1.png" width="200" height="80"
+                                                          alt=""></a>
+                            </div>
+                            <div class="footer-pera">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> DELLUNA <br />All rights
+                                    reserved
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>Made By</h4>
+                                <ul>
+                                    <li>Minsoo Kang</a></li>
+                                    <li>Sojeong Kim</a></li>
+                                    <li>Kyeongeun Son</a></li>
+                                    <li>Kicheol Lee</a></li>
+                                    <li>Seho Ji</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>Contact</h4>
+                                <ul>
+                                    <li>alstn9469@hoteldelluna.com</a></li>
+                                    <li>sojeong@hoteldelluna.com</a></li>
+                                    <li>keson@hoteldelluna.com</a></li>
+                                    <li>leekicheol@hoteldelluna.com</a></li>
+                                    <li>jiseho19@hoteldelluna.com </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4  col-sm-5">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>Our Location</h4>
+                                <ul>
+                                    <li>서울특별시 강남구 역삼동 </li>
+                                    <li>819-10 세경빌딩 3층</li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+
+    <th:block th:fragment="js">
+        <!-- JS here -->
+
+        <!-- All JS Custom Plugins Link Here here -->
+        <script type="text/javascript" th:src="@{./assets/js/vendor/modernizr-3.5.0.min.js}"></script>
+
+        <!-- Jquery, Popper, Bootstrap -->
+        <script type="text/javascript" th:src="@{./assets/js/vendor/jquery-1.12.4.min.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/popper.min.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/bootstrap.min.js}"></script>
+        <!-- Jquery Mobile Menu -->
+        <script type="text/javascript" th:src="@{./assets/js/jquery.slicknav.min.js}"></script>
+
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script type="text/javascript" th:src="@{./assets/js/owl.carousel.min.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/slick.min.js}"></script>
+        <!-- Date Picker -->
+        <script type="text/javascript" th:src="@{./assets/js/gijgo.min.js}"></script>
+        <!-- One Page, Animated-HeadLin -->
+        <script type="text/javascript" th:src="@{./assets/js/wow.min.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/animated.headline.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/jquery.magnific-popup.js}"></script>
+
+        <!-- Scrollup, nice-select, sticky -->
+        <script type="text/javascript" th:src="@{./assets/js/jquery.scrollUp.min.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/jquery.nice-select.min.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/jquery.sticky.js}"></script>
+
+        <!-- contact js -->
+        <script type="text/javascript" th:src="@{./assets/js/contact.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/jquery.form.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/jquery.validate.min.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/mail-script.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/jquery.ajaxchimp.min.js}"></script>
+
+        <!-- Jquery Plugins, main Jquery -->
+        <script type="text/javascript" th:src="@{./assets/js/plugins.js}"></script>
+        <script type="text/javascript" th:src="@{./assets/js/main.js}"></script>
+
+        <script type="text/javascript" th:src="@{./assets/vendor/date-picker/js/datepicker.js}"></script>
+    </th:block>
+</body>
+</html>

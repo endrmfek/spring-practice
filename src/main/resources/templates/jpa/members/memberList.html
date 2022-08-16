@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/jpa/fragments/header :: header" />
+<body>
+<div class="container">
+    <div th:replace="/jpa/fragments/bodyHeader :: bodyHeader" />
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+                <th>도시</th>
+                <th>주소</th>
+                <th>우편번호</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="jpaMember : ${jpaMembers}">
+                <td th:text="${jpaMember.id}"></td>
+                <td th:text="${jpaMember.name}"></td>
+                <td th:text="${jpaMember.jpaAddress?.city}"></td>
+                <td th:text="${jpaMember.jpaAddress?.street}"></td>
+                <td th:text="${jpaMember.jpaAddress?.zipcode}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="/jpa/fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>

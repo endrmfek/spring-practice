@@ -10,7 +10,7 @@ import java.util.List;
 
 //주문 - 애그리거트 루트
 @Entity
-@Table(name = "purchase_order")
+@Table(name = "d_purchase_order")
 @Access(AccessType.FIELD) //필드로 바로접근하겠다.
 @Getter
 public class Order {
@@ -24,7 +24,7 @@ public class Order {
     private Orderer orderer; //주문자
 
     @ElementCollection(fetch = FetchType.LAZY) // 지연로딩
-    @CollectionTable(name = "order_line" , joinColumns = @JoinColumn(name="order_number"))
+    @CollectionTable(name = "d_order_line" , joinColumns = @JoinColumn(name="order_number"))
     @OrderColumn(name = "line_idx") //순서대로 넣을게?
     private List<OrderLine> orderLines; // 주문라인
 
@@ -107,7 +107,7 @@ public class Order {
         }
     }
 
-    private boolean isNotYetShipped() {
+    public boolean isNotYetShipped() {
         //결제대기 , 상품준비때만 취소나 배송지변경이 가능합니다.
         return state == OrderState.PAYMENT_WAITING || state == OrderState.PREPARING;
     }

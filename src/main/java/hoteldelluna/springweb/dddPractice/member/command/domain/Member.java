@@ -1,5 +1,6 @@
 package hoteldelluna.springweb.dddPractice.member.command.domain;
 
+import hoteldelluna.springweb.dddPractice.common.event.Events;
 import hoteldelluna.springweb.dddPractice.common.jpa.EmailSetConverter;
 import hoteldelluna.springweb.dddPractice.common.model.Email;
 import hoteldelluna.springweb.dddPractice.common.model.EmailSet;
@@ -40,7 +41,7 @@ public class Member {
     public void initializePassword() { //비밀번호 초기화
         String newPassword = generateRandomPassword();
         this.password = new Password(newPassword);
-        //이벤트 발생
+        Events.raise(new PasswordChangedEvent(id.getId() , newPassword));
     }
 
     public String generateRandomPassword() {
@@ -55,12 +56,12 @@ public class Member {
 
     public void block() {
         this.blocked = true;
-        //이벤트
+        Events.raise(new MemberBlockedEvent(id.getId()));
     }
 
     public void unblock() {
         this.blocked = false;
-        //이벤트
+        Events.raise(new MemberUnblockedEvent(id.getId()));
     }
 
     public void changePassword(String oldPw, String newPw) {
@@ -68,15 +69,11 @@ public class Member {
             throw new IdPasswordNotMatchingException();
         }
         this.password = new Password(newPw);
-        //이벤트
+        Events.raise(new PasswordChangedEvent(id.getId(), newPw));
     }
 
     public boolean isBlocked() {
         return blocked;
     }
-
-
-
-
 
 }

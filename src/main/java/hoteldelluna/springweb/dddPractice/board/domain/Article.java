@@ -6,9 +6,9 @@ import javax.persistence.*;
 
 @Getter
 @Entity
-@Table(name = "article")
+@Table(name = "d_article")
 @SecondaryTable(
-        name="article_content",
+        name="d_article_content",
         pkJoinColumns = @PrimaryKeyJoinColumn(name = "id")
 )
 public class Article {
@@ -21,10 +21,10 @@ public class Article {
     @AttributeOverrides({
             @AttributeOverride(
                     name = "content",
-                    column = @Column(table = "article_content" , name="content")),
+                    column = @Column(table = "d_article_content" , name="content")),
             @AttributeOverride(
                     name = "contentType",
-                    column = @Column(table="article_content", name="content_type")
+                    column = @Column(table="d_article_content", name="content_type")
             )
     })
     @Embedded

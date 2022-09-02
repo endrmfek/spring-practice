@@ -1,14 +1,17 @@
 package hoteldelluna.springweb.dddPractice.order.ui;
 
-import hoteldelluna.springweb.dddPractice.catalog.command.domain.product.Product;
 import hoteldelluna.springweb.dddPractice.catalog.query.product.ProductData;
 import hoteldelluna.springweb.dddPractice.catalog.query.product.ProductQueryService;
-import hoteldelluna.springweb.dddPractice.order.NoOrderException;
+import hoteldelluna.springweb.dddPractice.common.ValidationErrorException;
+import hoteldelluna.springweb.dddPractice.member.command.domain.MemberId;
 import hoteldelluna.springweb.dddPractice.order.command.application.NoOrderProductException;
 import hoteldelluna.springweb.dddPractice.order.command.application.OrderProduct;
 import hoteldelluna.springweb.dddPractice.order.command.application.OrderRequest;
 import hoteldelluna.springweb.dddPractice.order.command.application.PlaceOrderService;
+import hoteldelluna.springweb.dddPractice.order.command.domain.OrderNo;
 import hoteldelluna.springweb.dddPractice.order.command.domain.OrdererService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -31,6 +34,9 @@ public class OrderController {
     @PostMapping("/ddd/orders/orderConfirm") //주문 확정
     public String orderConfirm(@ModelAttribute("orderReq")OrderRequest orderRequest,
                                ModelMap modelMap){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        orderRequest.setOrdererMemberId(MemberId.of(user.getUsername()));
+        populateProductAndTotalAmountsModel(orderRequest, modelMap);
         return "ddd/order/confirm";
     }
 
@@ -61,6 +67,22 @@ public class OrderController {
     public String order(@ModelAttribute("orderReq") OrderRequest orderRequest,
                         BindingResult bindingResult,
                         ModelMap modelMap) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        orderRequest.setOrdererMemberId(MemberId.of(user.getUsername()));
+        try{
+            OrderNo orderNo = placeOrderService.placeOrder(orderRequest);
+            modelMap.addAttribute("orderNo" , orderNo.getNumber());
+            return "ddd/order/orderComplete";
+        } catch (ValidationErrorException e) {
+            e.getErrors().forEach( err -> {
+                if(err.hasName()) {
+                    bindingResult.rejectValue(err.getName(), err.getCode());
+                } else {
+                    bindingResult.reject(err.getCode());
+                }
+            });
+        }
+        populateProductAndTotalAmountsModel(orderRequest, modelMap);
         return "ddd/order/confirm";
     }
 

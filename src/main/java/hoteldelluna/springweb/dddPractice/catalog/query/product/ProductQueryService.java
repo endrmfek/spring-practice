@@ -28,7 +28,7 @@ public class ProductQueryService {
     @Transactional
     public CategoryProduct getProductInCategory(Long categoryId, int page, int size) {
         CategoryData category = categoryDataDao.findById(new CategoryId(categoryId))
-                .orElseThrow(() -> new NoCategoryException());
+                .orElseThrow(NoCategoryException::new);
 
         Page<ProductData> productPage = productDataDao.findByCategoryIdsContains(category.getId(), Pageable.ofSize(size).withPage(page-1));
         return new CategoryProduct(category,

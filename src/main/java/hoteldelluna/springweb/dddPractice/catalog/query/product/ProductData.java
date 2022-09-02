@@ -19,7 +19,7 @@ public class ProductData {
     private ProductId id;
 
     @ElementCollection
-    @CollectionTable(name = "product_category",
+    @CollectionTable(name = "d_product_category",
                     joinColumns = @JoinColumn(name="product_id"))
     private Set<CategoryId> categoryIds;
 

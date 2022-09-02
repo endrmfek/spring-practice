@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableJpaRepositories(repositoryBaseClass = RangeableRepositoryImpl.class)
-@EnableAsync
+//@EnableAsync
 public class SpringwebApplication {
 
 	public static void main(String[] args) {

@@ -16,9 +16,9 @@ import org.springframework.security.web.savedrequest.NullRequestCache;
 
 import javax.sql.DataSource;
 
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@Configuration
 //@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String AUTHCOOKIENAME = "AUTH";

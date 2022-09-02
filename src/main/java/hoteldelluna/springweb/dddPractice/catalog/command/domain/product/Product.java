@@ -17,7 +17,7 @@ public class Product {
     private ProductId id;
 
     @ElementCollection(fetch = FetchType.LAZY) // List 타입은 RDB에서 표현할수 없음. 그래서 따로 테이블을 만들어서 관리함.
-    @CollectionTable(name = "product_category",
+    @CollectionTable(name = "d_product_category",
                     joinColumns = @JoinColumn(name = "product_id"))
     private Set<CategoryId> categoryIds;
 

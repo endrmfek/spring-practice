@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "member_authorities")
+@Table(name = "d_member_authorities")
 public class MemberAuthorities {
 
     @EmbeddedId

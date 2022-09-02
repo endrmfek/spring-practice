@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "image_type")
-@Table(name = "image")
+@Table(name = "d_image")
 public abstract class Image {
     @Id
     @GeneratedValue

@@ -1,6 +1,10 @@
 package hoteldelluna.springweb.dddPractice.order.ui;
 
 import hoteldelluna.springweb.dddPractice.order.command.application.CancelOrderService;
+import hoteldelluna.springweb.dddPractice.order.command.domain.Canceller;
+import hoteldelluna.springweb.dddPractice.order.command.domain.OrderNo;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +18,11 @@ public class CancelOrderController {
         this.cancelOrderService = cancelOrderService;
     }
 
-    @RequestMapping("/ddd/my/orders/{orderNo}/cancel")
+    @RequestMapping("/my/orders/{orderNo}/cancel")
     public String orderDetail(@PathVariable("orderNo") String orderNo, ModelMap modelMap) {
-        return "ddd/my/orderCanceled";
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        cancelOrderService.cancel(new OrderNo(orderNo), new Canceller(user.getUsername()));
+        return "my/orderCanceled";
     }
 
 }

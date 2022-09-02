@@ -5,6 +5,7 @@ import hoteldelluna.springweb.dddPractice.catalog.query.category.CategoryDataDao
 import hoteldelluna.springweb.dddPractice.catalog.query.product.CategoryProduct;
 import hoteldelluna.springweb.dddPractice.catalog.query.product.ProductData;
 import hoteldelluna.springweb.dddPractice.catalog.query.product.ProductQueryService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@Slf4j
 public class ProductController {
     private CategoryDataDao categoryDataDao;
     private ProductQueryService productQueryService;
@@ -29,7 +31,7 @@ public class ProductController {
     @RequestMapping("/ddd/categories")
     public String categories(ModelMap model) {
         List<CategoryData> categories = categoryDataDao.findAll();
-        model.addAttribute("categories" , categories);
+        model.addAttribute("categories", categories);
         return "ddd/category/categoryList";
     }
 

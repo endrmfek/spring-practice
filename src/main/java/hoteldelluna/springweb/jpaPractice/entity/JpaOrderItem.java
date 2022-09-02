@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="order_item")
+@Table(name = "jpa_order_item")
 @Getter @Setter
 public class JpaOrderItem {
 

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ShopItemImgRepository extends JpaRepository<ShopItemImg, Long> {
-    List<ShopItemImg> findByIdOrderByIdAsc(Long itemId);
+    List<ShopItemImg> findByItemIdOrderByIdAsc(Long itemId);
 
     ShopItemImg findByItemIdAndRepimgYn(Long itemId, String repimgYn);
 }

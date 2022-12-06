@@ -28,6 +28,10 @@ public class ShopItemController {
 
     private final ShopItemService itemService;
 
+    /*
+    * item 추가
+    * admin 권한을 가진 사람만
+    * */
     @GetMapping(value = "/admin/item/new")
     public String itemForm(Model model) {
         model.addAttribute("itemFormDto" , new ShopItemFormDto());
@@ -59,6 +63,10 @@ public class ShopItemController {
         return "redirect:/shop/";
     }
 
+    /*
+    * item 수정
+    * admin 권한을 가진 사람만.
+    * */
     @GetMapping("/admin/item/{itemId}")
     public String itemDtl(@PathVariable Long itemId, Model model) {
         try {
@@ -96,9 +104,12 @@ public class ShopItemController {
         return "redirect:/shop/";
     }
 
+    /*
+    * 상품 관리 페이지.
+    * */
     @GetMapping(value = {"/admin/items" , "/admin/items/{page}"})
     public String itemManage(@ModelAttribute("itemSearchDto") ShopItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page , Model model) {
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,3); // (페이지 , 사이즈)
+        Pageable pageable = PageRequest.of(page.orElse(0),3); // (페이지 , 사이즈)
         Page<ShopItem> items = itemService.getAdminItemPage(itemSearchDto, pageable);
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
@@ -106,12 +117,16 @@ public class ShopItemController {
         return "shop/item/itemMng";
     }
 
+    /*
+    * 아이템 보기
+    * 일반 사용자
+    * */
     @GetMapping(value = "/item/{itemId}")
     public String itemDtl(Model model, @PathVariable("itemId") Long itemId){
+        //itemimgdtolist
         ShopItemFormDto itemFormDto = itemService.getItemDtl(itemId);
         model.addAttribute("item", itemFormDto);
         return "shop/item/itemDtl";
     }
-
 
 }

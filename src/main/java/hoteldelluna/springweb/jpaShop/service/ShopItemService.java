@@ -9,6 +9,7 @@ import hoteldelluna.springweb.jpaShop.dto.ShopMainItemDto;
 import hoteldelluna.springweb.jpaShop.entity.ShopItem;
 import hoteldelluna.springweb.jpaShop.entity.ShopItemImg;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -52,7 +54,9 @@ public class ShopItemService {
     @Transactional(readOnly = true)
     public ShopItemFormDto getItemDtl(Long itemId) { // itemDetail
         //상품 상세 화면
-        List<ShopItemImg> itemImgList = itemImgRepository.findByIdOrderByIdAsc(itemId); // list
+        log.info("아이템 아이디 넘어오냐 = {}" , itemId);
+        List<ShopItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId); // list
+        log.info("아이템 이미지 넘어오냐 = {}" , itemImgList);
         List<ShopItemImgDto> itemImgDtoList = new ArrayList<>(); // dto
         for (ShopItemImg itemImg : itemImgList) {
             ShopItemImgDto itemImgDto = ShopItemImgDto.of(itemImg);
@@ -62,6 +66,7 @@ public class ShopItemService {
         ShopItem item = itemRepository.findById(itemId).orElseThrow(EntityNotFoundException::new); //엔티티를
         ShopItemFormDto itemFormDto = ShopItemFormDto.of(item); //DTO로 변경
         itemFormDto.setItemImgDtoList(itemImgDtoList);
+        System.out.println("사이즈 몇이냐" + itemFormDto.getItemImgDtoList().size());
         return itemFormDto;
     }
 

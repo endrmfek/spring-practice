@@ -1,6 +1,5 @@
 package hoteldelluna.springweb.jpaShop.config;
 
-import hoteldelluna.springweb.dddPractice.member.command.domain.Password;
 import hoteldelluna.springweb.jpaShop.service.ShopMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
         http.formLogin()
                 .loginPage("/shop/members/login")
                 .defaultSuccessUrl("/shop/")

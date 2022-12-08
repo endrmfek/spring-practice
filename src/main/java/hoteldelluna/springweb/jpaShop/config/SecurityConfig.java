@@ -22,11 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /*
     * http 요청에 대한 보안
-    *
     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
+        http.csrf().disable();
         http.formLogin()
                 .loginPage("/shop/members/login")
                 .defaultSuccessUrl("/shop/")
@@ -38,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/shop/");
 
         http.authorizeRequests()
-                .mvcMatchers("/", "/ddd/**", "/shop" , "/shop/members/**", "/shop/item/**", "/images/**").permitAll()
+                .mvcMatchers("/", "/ddd/**", "/shop" , "/shop/members/**", "/shop/item/**", "/images/**", "/boot/**").permitAll()
                 .mvcMatchers("/shop/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 

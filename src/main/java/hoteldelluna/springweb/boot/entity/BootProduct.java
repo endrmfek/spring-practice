@@ -1,7 +1,6 @@
 package hoteldelluna.springweb.boot.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -9,9 +8,12 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 @Entity
 @Table(name = "boot_product")
-public class BootProduct {
+public class BootProduct extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +28,12 @@ public class BootProduct {
     @Column(nullable = false)
     private Integer stock;
 
-    private LocalDateTime createdAt;
+    @OneToOne(mappedBy = "product")
+    @ToString.Exclude // 순환참조 때문에 막아놔야됨.
+    private BootProductDetail productDetail;
 
-    private LocalDateTime updatedAt;
-
+    @ManyToOne
+    @JoinColumn(name = "provider_id")
+    @ToString.Exclude
+    private BootProvider provider;
 }
